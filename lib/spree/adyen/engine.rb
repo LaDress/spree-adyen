@@ -9,6 +9,11 @@ module Spree
         app.config.spree.payment_methods << Gateway::AdyenPayment
         app.config.spree.payment_methods << Gateway::AdyenHPP
       end
+
+      config.after_initialize do
+        Spree::Payment.send :attr_accessor, :request_env
+        Spree::PermittedAttributes.payment_attributes.push request_env: ['HTTP_USER_AGENT', 'HTTP_ACCEPT']
+      end
     end
   end
 end
