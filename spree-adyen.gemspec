@@ -22,6 +22,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec-rails", '~> 2.14.2'
   spec.add_development_dependency "factory_girl"
+  spec.add_development_dependency "sqlite3"
 
   spec.add_runtime_dependency "adyen", "~> 1.4.0"
   spec.add_runtime_dependency "spree", "~> 2.1.2"
