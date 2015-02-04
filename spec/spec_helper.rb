@@ -1,6 +1,12 @@
 # Configure Rails Environment
 ENV["RAILS_ENV"] = "test"
 
+begin
+  require 'simplecov'
+  SimpleCov.start
+rescue LoadError
+end
+
 require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 require 'rspec/rails'
 require 'ffaker'
