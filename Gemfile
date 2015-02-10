@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'spree', github: 'spree/spree', branch: '2-1-stable'
-gem 'pg'
+gem 'spree'
 
 gem 'pry-rails'
 gem 'simplecov'
