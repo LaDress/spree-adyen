@@ -5,7 +5,7 @@ module Spree
     def confirm
       order = current_order
 
-      unless authorized?
+      unless authorized? || pending?
         flash.notice = Spree.t(:payment_processing_failed)
         redirect_to checkout_state_path(order.state) and return
       end
@@ -44,6 +44,10 @@ module Spree
 
       def authorized?
         params[:authResult] == "AUTHORISED"
+      end
+
+      def pending?
+        params[:authResult] == "PENDING"
       end
   end
 end
