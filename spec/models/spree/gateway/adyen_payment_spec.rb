@@ -37,7 +37,7 @@ module Spree
         ::Adyen::API::PaymentService.any_instance.stub(make_payment_request: response)
       end
 
-      let(:cc) { create(:credit_card) }
+      let(:cc) { create(:credit_card, first_name: 'Foo', last_name: 'Bar') }
 
       it "adds processing api calls to response object" do
         expect {
