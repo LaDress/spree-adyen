@@ -36,9 +36,10 @@ module Spree
       expect(payment.response_code).to eq params['pspReference']
     end
 
-    it "redirects to order complete page" do
+    # FIXME: Spree-Adyen implements an odd workflow ...
+    it "redirects to order confirmation page" do
       spree_get :confirm, params
-      expect(response).to redirect_to spree.order_path(order, :token => order.token)
+      expect(response).to redirect_to spree.checkout_state_path('confirm')
     end
 
     pending "test check signature filter"
