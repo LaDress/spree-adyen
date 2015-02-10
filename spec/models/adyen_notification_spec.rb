@@ -19,18 +19,18 @@ describe AdyenNotification do
   end
 
   context "receives notification of unsucessful payment auth" do
-    let(:notification) { subject.class.log(params.merge("success"=>"false")) }
+    let(:notification) { described_class.log(params.merge("success"=>"false")) }
 
     it "invalidates payment" do
       expect(payment.reload).not_to be_invalid
-
       notification.handle!
-      expect(payment.reload).to be_invalid
+      the_payment = Spree::Payment.find(payment.id)
+      expect(the_payment).to be_invalid
     end
   end
 
   context "receives notification of sucessful payment auth" do
-    let(:notification) { subject.class.log(params.merge("success"=>"true")) }
+    let(:notification) { described_class.log(params.merge("success"=>"true")) }
 
     it "doesnt invalidate payment" do
       notification.handle!
